@@ -184,15 +184,15 @@ def gulf_panel(w, h):
 
     img = Image.new("RGB", (w, h), PAPER)
     img.paste((236, 229, 215), (0, 0), mask)
-    img = halftone(mask, 3, (168, 158, 142), img)
+    img = halftone(mask, 2, (188, 178, 161), img)
     img.paste(COAST, (0, 0), coast)
     d = ImageDraw.Draw(img)
     manama = project(50.58, 26.22, w, h)
     qeshm = project(55.90, 26.90, w, h)
     hormuz = project(56.45, 26.60, w, h)
 
-    for r in (9, 16):
-        d.ellipse([manama[0] - r, manama[1] - r, manama[0] + r, manama[1] + r], outline=RED)
+    for r in (10, 17):
+        d.ellipse([manama[0] - r, manama[1] - r, manama[0] + r, manama[1] + r], outline=RED, width=2)
 
     def curve(p0, p1, p2, color):
         pts = []
@@ -202,12 +202,12 @@ def gulf_panel(w, h):
             y = (1 - t) ** 2 * p0[1] + 2 * (1 - t) * t * p1[1] + t * t * p2[1]
             pts.append((x, y))
         for i in range(0, 60, 3):
-            d.line([pts[i], pts[i + 2]], fill=color)
+            d.line([pts[i], pts[i + 2]], fill=color, width=2)
         ax, ay = pts[60]
         bx, by = pts[55]
         ang = math.atan2(ay - by, ax - bx)
         for da in (2.6, -2.6):
-            d.line([(ax, ay), (ax + 5 * math.cos(ang + da), ay + 5 * math.sin(ang + da))], fill=color)
+            d.line([(ax, ay), (ax + 6 * math.cos(ang + da), ay + 6 * math.sin(ang + da))], fill=color, width=2)
 
     mid = (manama[0] + qeshm[0]) / 2.0
     curve(manama, (mid, 26), qeshm, RED)
@@ -222,9 +222,9 @@ def gulf_panel(w, h):
         d.rectangle([x - 3, y - 2, x + tw + 3, y + size + 1], fill=PAPER)
         caps(d, (x, y), txt, f, color, track)
 
-    mlabel(manama[0] + 8, manama[1] - 17, "MANAMA", 10, 1.2, INK)
-    mlabel(qeshm[0] - 50, qeshm[1] - 16, "QESHM", 10, 1.2, INK)
-    mlabel(hormuz[0] - 18, hormuz[1] + 8, "HORMUZ", 7, 1.4, MUTED)
+    mlabel(manama[0] + 9, manama[1] - 18, "MANAMA", 11, 1.1, INK)
+    mlabel(qeshm[0] - 56, qeshm[1] - 17, "QESHM", 11, 1.1, INK)
+    mlabel(hormuz[0] - 19, hormuz[1] + 9, "HORMUZ", 7.5, 1.3, MUTED)
 
     mlabel(146, 8, "IRAN", 11.5, 2.0, MUTED)
     mlabel(8, 148, "SAUDI ARABIA", 10.5, 1.5, MUTED)
@@ -261,10 +261,10 @@ def bridge():
     d.line([(146, 43), (128, sea)], fill=INK, width=1)
     d.line([(152, 43), (170, sea)], fill=INK, width=1)
 
-    for x in range(112, 196, 12):
-        d.line([(x, 12), (x + 6, 12)], fill=RED, width=2)
-    for x in (122, 158):
-        d.line([(x, 16), (x, 30)], fill=RED, width=1)
+    for x in (104, 200):
+        d.line([(x, 15), (x, 33)], fill=RED, width=2)
+    d.line([(126, 34), (134, 38)], fill=RED, width=1)
+    d.line([(140, 40), (148, 43)], fill=RED, width=1)
     return im
 
 
@@ -310,7 +310,7 @@ def chips():
         d.line([(138, y), (143, y)], fill=INK)
     d.text((70, 17), "AI", font=F(BCB, 17), fill=INK)
 
-    for x in range(152, 260, 9):
+    for x in range(144, 258, 9):
         d.line([(x, 18), (x + 5, 18)], fill=INK)
     d.polygon([(266, 18), (259, 14), (259, 22)], fill=INK)
 
@@ -398,14 +398,14 @@ def render(path):
     kf = F(BCB, 17)
     caps(d, (M, 244), LEAD_KICK, kf, RED, 1.8)
 
-    hf, hrows = fit(LEAD_HEAD, DM, 612, 47, 3)
+    hf, hrows = fit(LEAD_HEAD, DM, 612, 45, 3)
     y = 268
     for row in hrows:
         d.text((M, y), row, font=hf, fill=INK)
-        y += 49
+        y += 51
 
-    dfk = F(PSR, 16.6)
-    y = block(d, (M, y + 4), wrap(LEAD_DECK, dfk, 604), dfk, 21, (60, 55, 48))
+    dfk = F(PSR, 16.2)
+    y = block(d, (M, y + 2), wrap(LEAD_DECK, dfk, 604), dfk, 20.6, (60, 55, 48))
     caps(d, (M, y + 2), LEAD_BY, F(BCB, 11), RED, 1.4)
 
     rule(d, 676, 206, W - M, 1)
@@ -453,8 +453,8 @@ def render(path):
 
     for i, (num, lab) in enumerate(STATS):
         x = M + i * 236
-        d.text((x, 872), num, font=F(DM, 30), fill=INK)
-        caps(d, (x, 906), lab, F(BCS, 9.0), MUTED, 1.5)
+        d.text((x, 870), num, font=F(DM, 31), fill=INK)
+        caps(d, (x, 906), lab, F(BCS, 9.8), MUTED, 1.4)
         if i:
             d.line([(x - 18, 874), (x - 18, 908)], fill=HAIR)
 

@@ -8,7 +8,7 @@ One day's world news as a single front page: Tuesday 17 November 2026. Iran's dr
 answering strike at Qeshm, the Kerch bridge span in the sea, Manila's minerals pact and the AI-chip
 licence list — set in ivory newsprint, ink and vermilion with a halftone locator map of the Gulf.
 
-`entry.png` is 1024×1024 and 153 KB. `main.py` only copies it; `gen.py` draws it again from the
+`entry.png` is 1024×1024 and 145 KB. `main.py` only copies it; `gen.py` draws it again from the
 committed fonts and coastline data.
 
 ## Run it
