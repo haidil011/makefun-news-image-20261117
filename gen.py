@@ -241,83 +241,102 @@ def _pad():
 
 def bridge():
     im, d = _pad()
-    sea = 46
+    sea = 45
     d.line([(0, sea), (VW, sea)], fill=INK, width=1)
-    for x in range(2, VW, 9):
-        d.line([(x, sea + 3), (x + 5, sea + 3)], fill=(150, 140, 125), width=1)
-    d.line([(2, 24), (106, 24)], fill=INK, width=2)
-    d.line([(198, 24), (302, 24)], fill=INK, width=2)
+    for x in range(2, VW, 7):
+        d.line([(x, sea + 5), (x + 4, sea + 5)], fill=(176, 166, 150), width=1)
+    for x in range(6, VW, 13):
+        d.line([(x, sea + 9), (x + 5, sea + 9)], fill=(200, 191, 176), width=1)
 
-    for x in (58, 240):
-        d.rectangle([x, 24, x + 4, sea], fill=INK)
-    for x in range(6, 100, 13):
-        d.line([(x, 24), (x + 7, 31)], fill=INK, width=1)
-    for x in range(206, 300, 13):
-        d.line([(x, 31), (x + 7, 24)], fill=INK, width=1)
+    for x0 in (2, 194):
+        x1 = x0 + 108
+        d.line([(x0, 28), (x1, 28)], fill=INK, width=2)
+        d.line([(x0, 34), (x1, 34)], fill=INK, width=1)
+        for x in range(x0 + 4, x1 - 6, 14):
+            d.line([(x, 28), (x, 34)], fill=INK, width=1)
+            d.line([(x, 28), (x + 10, 34)], fill=(120, 112, 100), width=1)
+            d.line([(x + 10, 28), (x, 34)], fill=(120, 112, 100), width=1)
+    for x in (56, 242):
+        d.rectangle([x, 34, x + 4, sea], fill=INK)
+    d.line([(104, 28), (110, 24)], fill=INK, width=1)
+    d.line([(194, 28), (188, 24)], fill=INK, width=1)
 
-    d.line([(106, 24), (146, 43)], fill=INK, width=2)
-    d.line([(198, 24), (152, 43)], fill=INK, width=2)
-    d.line([(146, 43), (152, 43)], fill=INK, width=2)
-    d.line([(146, 43), (128, sea)], fill=INK, width=1)
-    d.line([(152, 43), (170, sea)], fill=INK, width=1)
+    d.line([(110, 28), (138, 43)], fill=INK, width=3)
+    d.line([(192, 28), (166, 42)], fill=INK, width=3)
+    d.line([(136, 41), (164, 40)], fill=INK, width=2)
+    d.line([(126, 37), (136, 43)], fill=INK, width=1)
+    for x in (146, 154):
+        d.line([(x, 38), (x + 4, 40)], fill=INK, width=1)
 
-    for x in (104, 200):
-        d.line([(x, 15), (x, 33)], fill=RED, width=2)
-    d.line([(126, 34), (134, 38)], fill=RED, width=1)
-    d.line([(140, 40), (148, 43)], fill=RED, width=1)
+    d.line([(110, 28), (104, 30), (110, 32), (104, 34)], fill=INK, width=1)
+    d.line([(192, 28), (198, 30), (192, 32), (198, 34)], fill=INK, width=1)
+    for ax in (120, 168):
+        d.line([(ax, 35), (ax, 41)], fill=RED, width=1)
+        d.line([(ax, 41), (ax - 3, 38)], fill=RED, width=1)
+        d.line([(ax, 41), (ax + 3, 38)], fill=RED, width=1)
     return im
 
 
 def summit():
     im, d = _pad()
-    d.line([(18, 40), (286, 40)], fill=INK, width=2)
-    d.rectangle([18, 40, 286, 46], outline=INK)
-    d.line([(34, 46), (34, 56)], fill=INK, width=2)
-    d.line([(270, 46), (270, 56)], fill=INK, width=2)
+    d.line([(16, 42), (288, 42)], fill=INK, width=2)
+    d.rectangle([16, 42, 288, 47], outline=INK)
+    d.line([(34, 47), (34, 56)], fill=INK, width=2)
+    d.line([(270, 47), (270, 56)], fill=INK, width=2)
 
-    for px, kind in ((52, "ph"), (96, "us"), (196, "au"), (240, "jp")):
-        d.line([(px, 12), (px, 40)], fill=INK, width=1)
+    for px, kind in ((44, "ph"), (92, "us"), (212, "au"), (260, "jp")):
+        d.line([(px, 11), (px, 42)], fill=INK, width=1)
         if kind == "ph":
-            d.rectangle([px, 14, px + 20, 19], fill=(176, 58, 46))
-            d.rectangle([px, 19, px + 20, 24], fill=(24, 21, 18))
-            d.polygon([(px, 14), (px + 8, 19), (px, 24)], fill=PAPER, outline=INK)
+            d.rectangle([px, 13, px + 18, 18], fill=(176, 58, 46))
+            d.rectangle([px, 18, px + 18, 23], fill=INK)
+            d.polygon([(px, 13), (px + 7, 18), (px, 23)], fill=PAPER, outline=INK)
         elif kind == "us":
-            for y in range(14, 26, 4):
-                d.line([(px, y), (px + 20, y)], fill=(176, 58, 46), width=1)
-            d.rectangle([px, 14, px + 7, 19], fill=(24, 21, 18))
+            for yy in (15, 19, 23):
+                d.line([(px, yy), (px + 18, yy)], fill=(176, 58, 46))
+            d.rectangle([px, 13, px + 6, 18], fill=INK)
         elif kind == "au":
-            d.rectangle([px, 14, px + 20, 25], outline=INK)
-            d.rectangle([px, 14, px + 9, 19], fill=(24, 21, 18))
-            for cx, cy in ((14, 21), (17, 23), (12, 23)):
+            d.rectangle([px, 13, px + 18, 23], outline=INK)
+            d.rectangle([px, 13, px + 8, 18], fill=INK)
+            for cx, cy in ((12, 20), (15, 21), (11, 22)):
                 d.ellipse([px + cx - 1, cy - 1, px + cx + 1, cy + 1], fill=PAPER)
         else:
-            d.ellipse([px + 3, 15, px + 17, 24], fill=(176, 58, 46))
+            d.ellipse([px + 2, 14, px + 16, 23], fill=(176, 58, 46))
 
-    for x, w in ((120, 40), (166, 46), (218, 34)):
-        d.rectangle([x, 30, x + w, 40], outline=INK)
-        d.line([(x + 6, 35), (x + w - 6, 35)], fill=(150, 140, 125), width=1)
+    d.polygon([(134, 30), (146, 26), (158, 30), (155, 36), (146, 38), (137, 36)], outline=INK)
+    d.line([(140, 30), (146, 38)], fill=INK)
+
+    for x0 in (104, 196):
+        d.rectangle([x0, 33, x0 + 44, 41], outline=INK)
+        d.line([(x0 + 4, 36), (x0 + 32, 36)], fill=(150, 140, 125), width=1)
+    d.polygon([(148, 30), (154, 24), (160, 30), (160, 38), (154, 34), (148, 38)], outline=(176, 58, 46))
     return im
 
 
 def chips():
     im, d = _pad()
-    d.rectangle([34, 8, 138, 46], outline=INK, width=2)
-    for x in range(42, 138, 8):
-        d.line([(x, 8), (x, 3)], fill=INK)
+    d.rectangle([26, 10, 120, 46], outline=INK, width=2)
+    d.rectangle([36, 18, 110, 40], outline=(120, 112, 100), width=1)
+    for x in range(34, 122, 8):
+        d.line([(x, 10), (x, 5)], fill=INK)
         d.line([(x, 46), (x, 51)], fill=INK)
-    for y in range(14, 46, 8):
-        d.line([(34, y), (29, y)], fill=INK)
-        d.line([(138, y), (143, y)], fill=INK)
-    d.text((70, 17), "AI", font=F(BCB, 17), fill=INK)
+    for y in range(16, 46, 8):
+        d.line([(26, y), (21, y)], fill=INK)
+        d.line([(120, y), (125, y)], fill=INK)
+    d.text((52, 17), "AI", font=F(BCB, 17), fill=INK)
 
-    for x in range(144, 258, 9):
-        d.line([(x, 18), (x + 5, 18)], fill=INK)
-    d.polygon([(266, 18), (259, 14), (259, 22)], fill=INK)
+    for x in range(130, 182, 9):
+        d.line([(x, 28), (x + 5, 28)], fill=INK)
+    d.polygon([(182, 28), (176, 24), (176, 32)], fill=INK)
 
-    for y in (8, 15, 22, 29, 36, 43):
-        d.line([(176, y), (176, y + 4)], fill=RED, width=2)
-    for x in (194, 208, 222, 236, 250):
-        d.ellipse([x, 32, x + 6, 38], fill=RED)
+    for x in (186, 192, 198):
+        d.line([(x, 4), (x, 52)], fill=RED, width=2)
+    d.line([(186, 14), (198, 14)], fill=RED, width=2)
+    d.line([(186, 34), (198, 34)], fill=RED, width=2)
+
+    for i in range(5):
+        cx = 214
+        cy = 8 + i * 9
+        d.rectangle([cx, cy, cx + 7, cy + 7], outline=INK)
     return im
 
 
@@ -465,7 +484,7 @@ def render(path):
     sw2 = sft.getlength(strap)
     d.text(((W - sw2) / 2, 955), strap, font=sft, fill=PAPER)
 
-    caps_center(d, W / 2, 996, "AN ENTRY FOR MAKE.FUN", F(BCS, 9.2), MUTED, 2.0)
+    caps_center(d, W / 2, 995, "AN ENTRY FOR MAKE.FUN", F(BCS, 9.8), MUTED, 2.2)
 
     img.save(path, optimize=True)
     return img
